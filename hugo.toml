@@ -1,0 +1,21 @@
+baseURL = 'https://fieldreport.xyz/'
+languageCode = 'en-us'
+title = 'Field Report'
+
+[params]
+  description = "Travel and camping adventures"
+  enableMaps = true
+
+[menu]
+  [[menu.main]]
+    name = "Trips"
+    url = "/trips/"
+    weight = 1
+  [[menu.main]]
+    name = "Gear"
+    url = "/gear/"
+    weight = 2
+  [[menu.main]]
+    name = "Guides"
+    url = "/guides/"
+    weight = 3

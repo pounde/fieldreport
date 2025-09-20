@@ -1,0 +1,13 @@
+<div id="map-{{ .Get "id" }}" style="height: {{ default "400px" (.Get "height") }};"></div>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  var map = L.map('map-{{ .Get "id" }}').setView([{{ .Get "lat" }}, {{ .Get "lng" }}], {{ default "10" (.Get "zoom") }});
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+  {{ if .Get "marker" }}
+  L.marker([{{ .Get "lat" }}, {{ .Get "lng" }}]).addTo(map)
+    .bindPopup('{{ .Get "marker" }}');
+  {{ end }}
+</script>

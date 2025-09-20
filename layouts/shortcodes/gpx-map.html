@@ -1,0 +1,22 @@
+<div id="gpx-map-{{ .Get "id" }}" style="height: {{ default "500px" (.Get "height") }};"></div>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.7.0/gpx.min.js"></script>
+<script>
+  var map = L.map('gpx-map-{{ .Get "id" }}');
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+  new L.GPX('{{ .Get "gpx" }}', {
+    async: true,
+    marker_options: {
+      startIconUrl: false,
+      endIconUrl: false
+    },
+    polyline_options: {
+      color: '#FF6B6B',
+      weight: 3,
+      opacity: 0.8
+    }
+  }).on('loaded', function(e) {
+    map.fitBounds(e.target.getBounds());
+  }).addTo(map);
+</script>
